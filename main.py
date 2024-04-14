@@ -36,7 +36,7 @@ create_table()
 
 @app.route('/')
 def index():
-    return render_template('index.html', name='Flask')
+    return render_template('index.html', name='Gaurav')
 
 
 @app.route('/add_details', methods=['GET', 'POST'])
@@ -59,8 +59,13 @@ def add_details():
         return redirect(url_for('index'))
     return render_template('add_details.html')
 
+
 @app.route('/search')
 def search():
+    return render_template('search.html')
+
+@app.route('/search_results')
+def search_results():
     search_name = request.args.get('search_name')
     if search_name:
         conn = create_connection()
@@ -72,7 +77,7 @@ def search():
             results = cursor.fetchall()
             conn.close()
             return render_template('search_results.html', results=results)
-    return redirect(url_for('index'))
+    return redirect(url_for('search'))
 
 
 if __name__ == '__main__':
