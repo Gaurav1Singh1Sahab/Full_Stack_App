@@ -1,0 +1,28 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To The Website</title>
+</head>
+<body>
+    <h1>Hello, {{ name }}!</h1>
+    <form action="/add_details" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select><br><br>
+
+        <label for="year_of_birth">Year of Birth:</label>
+        <input type="text" id="year_of_birth" name="year_of_birth"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
