@@ -59,6 +59,21 @@ def add_details():
         return redirect(url_for('index'))
     return render_template('add_details.html')
 
+@app.route('/search')
+def search():
+    search_name = request.args.get('search_name')
+    if search_name:
+        conn = create_connection()
+        if conn is not None:
+            cursor = conn.cursor()
+            cursor.execute('''
+                SELECT * FROM details WHERE name LIKE ?
+            ''', ('%' + search_name + '%',))
+            results = cursor.fetchall()
+            conn.close()
+            return render_template('search_results.html', results=results)
+    return redirect(url_for('index'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)
